@@ -19,6 +19,8 @@ const clear = document.querySelector('#clear')
 const operator = document.querySelectorAll('.operator')
 const resultsBox = document.querySelector('.results-box')
 const results = document.querySelector('.results')
+const buttons = document.querySelectorAll('button')
+const value = document.querySelectorAll("button").value
 
 
 // Click Effects for Clear and Equals Buttons
@@ -40,70 +42,26 @@ equals.addEventListener("mouseup", function() {
 
 // Logic
 
-function calculator() {
-  // Number values added to results on click
-  zero.addEventListener("mousedown", function() {
-    results.append("0")
-  })
-  one.addEventListener("mousedown", function() {
-    results.append("1")
-  })
-  two.addEventListener("mousedown", function() {
-    results.append("2")
-  })
-  three.addEventListener("mousedown", function() {
-    results.append("3")
-  })
-  four.addEventListener("mousedown", function() {
-    results.append("4")
-  })
-  five.addEventListener("mousedown", function() {
-    results.append("5")
-  })
-  six.addEventListener("mousedown", function() {
-    results.append("6")
-  })
-  seven.addEventListener("mousedown", function() {
-    results.append("7")
-  })
-  eight.addEventListener("mousedown", function() {
-    results.append("8")
-  })
-  nine.addEventListener("mousedown", function() {
-    results.append("9")
-  })
-  decimal.addEventListener("mousedown", function() {
-    results.append(".")
-  })
 
-  // Results cleared on click
-  clear.addEventListener("mousedown", function() {
-    results.textContent = " "
-  })
+  // Numbers
 
-  // Operated values added to results on click
-  add.addEventListener("mousedown", function() {
-    results.append("+")
-  })
-  subtract.addEventListener("mousedown", function() {
-    results.append("-")
-  })
-  multiply.addEventListener("mousedown", function() {
-    results.append("*")
-  })
-  divide.addEventListener("mousedown", function() {
-    results.append("/")
-  })
+  function calculator() {
 
-  // Returning the answer
+    // Numbers
 
-  result = 0
-  if (results.textContent.includes(+))
-    
+    for (i = 0; i < buttons.length; i++) {
+      if (buttons[i].value == "c") {
+        buttons[i].addEventListener("mousedown", function() {
+          results.textContent= " "
+        })
+      } else {
+        buttons[i].addEventListener("mousedown", function() {
+          num = this.value;
+          results.append(num)
+        })
+      }
+    }
+  }
 
-  equals.addEventListener("mousedown", function() {
-    results.textContent = result
-  })
-}
 
 calculator()
