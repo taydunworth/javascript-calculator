@@ -1,6 +1,6 @@
 // Variables declared for calculator
-const clear = document.getElementById('clear')
-const operator = document.querySelectorAll('button.operator')
+const clearBtn = document.getElementById('clear')
+const operator = document.querySelectorAll('.operator')
 const resultsBox = document.querySelector('.results-box')
 const results = document.querySelector('.results')
 const number = document.querySelectorAll('button.number')
@@ -8,16 +8,16 @@ const equals = document.querySelector('#equals')
 
 
 // Click Effects for Clear and Equals Buttons
-clear.addEventListener("mousedown", function() {
-  clear.className = "btn-click"
+clearBtn.addEventListener("mousedown", function() {
+  clearBtn.className = "btn-click"
 })
 
 equals.addEventListener("mousedown", function() {
   equals.className = "btn-click"
 })
 
-clear.addEventListener("mouseup", function() {
-  clear.className = ""
+clearBtn.addEventListener("mouseup", function() {
+  clearBtn.className = ""
 })
 
 equals.addEventListener("mouseup", function() {
@@ -27,13 +27,18 @@ equals.addEventListener("mouseup", function() {
 // Logic
 
 // set variables for first and second numbers
-let numOne = 0
-let numTwo = 0
+let numOne = ""
+let numTwo = ""
+
+// answer = numOne operator numTwo
 
 number.forEach(number => {
   number.addEventListener("click", numberEvent => {
     let numberValue = numberEvent.target.value
     results.textContent += numberValue
+    // need to store values for numOne and numTwo
+    // Value for numOne should be equal to the numbers clicked before the operator
+    // Value for numTwo should be the numbers clicked after the operator and before the equals
   })
 })
 
@@ -44,8 +49,9 @@ operator.forEach(operator => {
   })
 })
 
-clear.forEach(clear => {
-  clear.addEventListener("click", clearEvent =>  {
+// Not working for some reason
+clearBtn.forEach(clear => {
+  clearBtn.addEventListener("click", clearEvent =>  {
     results.textContent = ""
   })
 })
@@ -60,8 +66,5 @@ equals.addEventListener("click", answerEvent => {
   } else if (operation.value === '*') {
     results.textContent = numOne * numTwo
   }
+  // Could I technically say results.textContent = `${numOne} ${operator} ${numTwo}`
 })
-
-numOne = ''
-numTwo = ''
-operator = ''
