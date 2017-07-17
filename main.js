@@ -30,6 +30,7 @@ equals.addEventListener("mouseup", function() {
 let numOne = ""
 let numTwo = ""
 let operatorValue
+let fullValue = ""
 
 // answer = numOne operator numTwo
 
@@ -68,7 +69,9 @@ operator.forEach(operator => {
 clearBtn.addEventListener("click", clearEvent =>  {
   numOne = ""
   numTwo = ""
-  results.textContent
+  operatorValue = null
+  fullValue = ""
+  results.textContent = fullValue
   // if clear button is hit, everything is reset to zero
   // if new equation is created after equals is returned, reset to zero
 })
@@ -77,13 +80,17 @@ clearBtn.addEventListener("click", clearEvent =>  {
 equals.addEventListener("click", answerEvent => {
   console.log({ numOne, numTwo });
   if (operatorValue === "+") {
-    results.textContent = numOne + numTwo
+    fullValue = parseFloat(numOne) + parseFloat(numTwo)
   } else if (operatorValue === '-') {
-    results.textContent = numOne - numTwo
+    fullValue = numOne - numTwo
   } else if (operatorValue === '/') {
-    results.textContent = numOne / numTwo
+    fullValue = numOne / numTwo
   } else if (operatorValue === '*') {
-    results.textContent = numOne * numTwo
+    fullValue = numOne * numTwo
   }
+  results.textContent = fullValue
+  numOne = fullValue
+  operatorValue = null
+  numTwo = ""
   // Could I technically say results.textContent = `${numOne} ${operator} ${numTwo}`
 })
