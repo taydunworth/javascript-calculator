@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  padding-top: 30px; /* 100px for desktop */
+  padding-top: 100px;
   margin: 0px auto;
   width: 100%;
   display: flex;
@@ -18,7 +18,7 @@ body {
 
 .calculator {
   background-color: #64b255;
-  width: 50%; /* 30% for desktop */
+  width: 80%;
 }
 
 .top-bar {
@@ -87,4 +87,23 @@ button:focus {
 .operator:hover {
   color: #fff;
   background-color: #83c178;
+}
+
+/*---TABLET STYLES---*/
+
+@media ( min-width: 700px) {
+
+  .calculator {
+    width: 45%;
+  }
+
+}
+
+/*---DESKTOP STYLES---*/
+
+@media ( min-width: 900px ) {
+
+  .calculator {
+    width: 35%;
+  }
 }
