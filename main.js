@@ -42,26 +42,53 @@ equals.addEventListener("mouseup", function() {
 
 // Logic
 
-
-  // Numbers
-
   function calculator() {
 
-    // Numbers
+    // Buttons appending to results box
 
-    for (i = 0; i < buttons.length; i++) {
-      if (buttons[i].value == "c") {
+    const resultsArray = Array.from(results)
+    let length = buttons.length
+
+    // Clear results "C" is clicked
+    for (i = 0; i < length; i++) {
+      let value = buttons[i].value
+      if (value == "c") {
         buttons[i].addEventListener("mousedown", function() {
           results.textContent= " "
         })
-      } else {
+
+      // Adds number value when button is clicked
+    } else if (value != "=" && value != "+" && value!= "-" && value != "/" && value != "*") {
         buttons[i].addEventListener("mousedown", function() {
-          num = this.value;
-          results.append(num)
+          num = this.value
+          results.append(parseInt(num, 10))
+          // need to store values somewhere to recall for equation
         })
+
+      // Adds operator when button is clicked and does not allow the "=" to append
+    } else if (value != "="){
+        buttons[i].addEventListener("mousedown", function() {
+          num = this.value
+          results.append(value)
+      })
+      }
+    }
+
+    // Do the actual equations when "=" is clicked based on if the operator exists
+
+    for (i = 0; i < length; i++) {
+      if (buttons[i].value == "=") {
+        if (results.includes("+")) {
+          num += num
+        } else if (results.includes("-")) {
+          num -= num
+        } else if (results.includes("/")) {
+          num /= num
+        } else if (results.includes("*")) {
+          num *= num
+        }
       }
     }
   }
-
 
 calculator()
